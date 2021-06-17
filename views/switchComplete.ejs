@@ -1,0 +1,19 @@
+<h1>
+    Todo Item Details
+</h1>
+
+<% if (todoOne.completed) { %>
+    You just completed a todo item : <strong><%= todoOne.item %></strong>
+    that you created on <i><%= todoOne.createdAt %></i><br>
+    <h3>Congradulations! </h3>
+    <a href = "/todo">Return to your todo list page</a>
+    user is <b><%= user.googlename %> </b>
+    and their email is <i><%= user.googleemail %></i>
+<% } else  { %>
+    You just unchecked a todo item : <strong><%= todoOne.item %></strong>
+    that you created on <i><%= todoOne.createdAt %></i><br>
+    You can now do the the work!<br>
+    <a href = "/todo">Return to your todo list page</a>
+    user is <b><%= user.googlename %> </b>
+    and their email is <i><%= user.googleemail %></i>
+<% } %>

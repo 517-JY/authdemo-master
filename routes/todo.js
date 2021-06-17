@@ -68,6 +68,21 @@ router.get('/makeComplete/:itemId',
 });
 
 
+// switchComplete Route
+router.get('/switchComplete/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /todo/switchComplete/:itemId")
+      const todo = await ToDoItem.findOne({_id:req.params.itemId});
+      todo.completed = !todo.completed;
+      await todo.save();
+      res.locals.todoOne = todo;
+      res.render('switchComplete');
+      //res.render('completionConfirm');
+      //res.redirect('/todo')
+});
+
+
 
 
 module.exports = router;

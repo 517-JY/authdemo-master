@@ -1,0 +1,15 @@
+      <!-- loop -->
+      <% items.forEach(item => { %>
+        <!-- for each item going to generate the HTML -->
+        <a href="/todo/remove/<%=item._id %>">X</a>
+        ::
+        <%= item.item %>
+        <% if (item.completed) { %>
+           done
+        <% } else {%>
+         <a href = "/todo/makeComplete/<%= item._id %>">
+           todo
+         </a>
+        <% } %>
+       <br>
+   <% }) %>

@@ -4,21 +4,40 @@
     <h1> ToDo List for <%= user.googlename %> </h1>
     <p> Here is your list of things to do! </p>
 
-      <!-- loop -->
-      <% items.forEach(item => { %>
-           <!-- for each item going to generate the HTML -->
-           <a href="/todo/remove/<%=item._id %>">X</a>
-           ::
-           <%= item.item %>
-           <% if (item.completed) { %>
-              done
-           <% } else {%>
-            <a href = "/todo/makeComplete/<%= item._id %>">
-              todo
-            </a>
-           <% } %>
-          <br>
-      <% }) %>
+
+
+      
+
+      
+     
+
+      <% let numTodo = 0
+         items.forEach(item => { 
+        <!-- for each item going to generate the HTML -->
+            if(!item.completed) {
+                numTodo += 1
+            }
+      %>
+       
+        <a href="/todo/remove/<%=item._id %>">X</a>
+        ::
+        <%= item.item %>
+        <% if (item.completed) { %>        
+           <a href = "/todo/switchComplete/<%= item._id %>">
+            <i>  (done)</i>
+          </a>
+        <% } else {%>
+         <a href = "/todo/switchComplete/<%= item._id %>">
+           <b>  todo</b>
+         </a>
+        <% } %>
+       <br>
+     <% }) %>
+
+     <% if (numTodo ==0 ) { %>
+          <h3>You have no todo items. Congradulations!</h3>
+     <% } %>
+
 
       <form method="post" action="todo">
           new item: <input type="text" name="item"><br>
